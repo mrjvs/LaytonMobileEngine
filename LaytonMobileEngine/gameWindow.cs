@@ -6,8 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Diagnostics;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace LME
 {
@@ -19,7 +19,7 @@ namespace LME
 
         public GameWindow()
         {
-            Debug.WriteLine("starting game");
+            System.Console.WriteLine("starting game");
             InitializeComponent();
         }
 
@@ -33,5 +33,6 @@ namespace LME
         {
             game.StopGame();
         }
+
     }
 }
