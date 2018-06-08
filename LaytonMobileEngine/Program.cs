@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
-namespace LME
+namespace LaytonMobileEngine
 {
-    static class Program
+    /// <summary>
+    /// The main class.
+    /// </summary>
+    public static class Program
     {
-
-        [DllImport("kernel32.dll")]
-        static extern bool AttachConsole(int dwProcessId);
-        private const int ATTACH_PARENT_PROCESS = -1;
 
         /// <summary>
         /// The main entry point for the application.
@@ -20,11 +15,8 @@ namespace LME
         [STAThread]
         static void Main()
         {
-            AttachConsole(ATTACH_PARENT_PROCESS);
-
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GameWindow());
+            using (var game = new Engine())
+                game.Run();
         }
     }
 }
