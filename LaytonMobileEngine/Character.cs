@@ -8,5 +8,6 @@ namespace LaytonMobileEngine
 {
     class Character
     {
+
     }
 }

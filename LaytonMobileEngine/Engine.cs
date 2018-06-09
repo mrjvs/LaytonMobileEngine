@@ -9,7 +9,9 @@ namespace LaytonMobileEngine
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private LocationManager locManager;
-        
+        private ScriptLoader scriptLoader;
+
+
         public Engine()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -30,7 +32,12 @@ namespace LaytonMobileEngine
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            locManager = new LocationManager(Content, GraphicsDevice);
+            locManager = new LocationManager(GraphicsDevice);
+
+            scriptLoader = new ScriptLoader(locManager);
+
+            //load script file
+            scriptLoader.loadScript("");
         }
 
         protected override void UnloadContent()
