@@ -10,22 +10,28 @@ namespace LaytonMobileEngine
 {
     class Location
     {
-        private Character chars = new Character();
+        private List<Character> chars;
         private Texture2D bgText;
 
-        public Location(Texture2D texture)
+        public Location(Texture2D texture, List<Character> charList)
         {
             bgText = texture;
+            chars = charList;
         }
 
-        public Character getCharacters()
+        public List<Character> getCharacters()
         {
             return chars;
         }
 
-        public void draw(SpriteBatch canvas, int screenWidth, int screenHeight)
+        public void draw(SpriteBatch canvas, CharacterSpriteManager sprites, int screenWidth, int screenHeight)
         {
             canvas.Draw(bgText, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+
+            foreach(Character c in chars)
+            {
+                canvas.Draw(sprites.spriteList[c.characterSpriteIndex], c.spriteArea, Color.White);
+            }
         }
     }
 }

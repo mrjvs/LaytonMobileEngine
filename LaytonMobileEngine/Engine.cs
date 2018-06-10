@@ -9,6 +9,7 @@ namespace LaytonMobileEngine
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private LocationManager locManager;
+        private CharacterSpriteManager spriteManager;
         private ScriptLoader scriptLoader;
 
 
@@ -34,7 +35,9 @@ namespace LaytonMobileEngine
 
             locManager = new LocationManager(GraphicsDevice);
 
-            scriptLoader = new ScriptLoader(locManager);
+            spriteManager = new CharacterSpriteManager(GraphicsDevice);
+
+            scriptLoader = new ScriptLoader(locManager, spriteManager);
 
             //load script file
             scriptLoader.loadScript("");
@@ -59,7 +62,7 @@ namespace LaytonMobileEngine
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            locManager.currentLocation.draw(spriteBatch, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            locManager.currentLocation.draw(spriteBatch, spriteManager, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             System.Console.WriteLine((1 / gameTime.ElapsedGameTime.TotalSeconds).ToString());
             spriteBatch.End();
 

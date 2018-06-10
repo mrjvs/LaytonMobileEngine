@@ -21,10 +21,10 @@ namespace LaytonMobileEngine
             gDevice = g;
         }
 
-        public void addLocation(String path)
+        public void addLocation(String path, List<Character> chars)
         {
             Texture2D text = Texture2D.FromStream(gDevice, new FileStream(path, FileMode.Open));
-            Location loc = new Location(text);
+            Location loc = new Location(text, chars);
             locations.Add(loc);
         }
 
