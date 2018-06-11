@@ -11,6 +11,7 @@ namespace LaytonMobileEngine
         private LocationManager locManager;
         private CharacterSpriteManager spriteManager;
         private ScriptLoader scriptLoader;
+        private UIManager uiManager;
 
 
         public Engine()
@@ -18,14 +19,14 @@ namespace LaytonMobileEngine
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
+            //engine settings setup
             graphics.PreferredBackBufferWidth = 1200;
             graphics.PreferredBackBufferHeight = 720;
         }
 
         protected override void Initialize()
         {
-            // TODO: Add script loader
-
+            //no clue what to put here
             base.Initialize();
         }
 
@@ -37,34 +38,57 @@ namespace LaytonMobileEngine
 
             spriteManager = new CharacterSpriteManager(GraphicsDevice);
 
-            scriptLoader = new ScriptLoader(locManager, spriteManager);
+            uiManager = new UIManager(GraphicsDevice);
+
+            scriptLoader = new ScriptLoader(locManager, spriteManager, uiManager);
 
             //load script file
-            scriptLoader.loadScript("");
+            scriptLoader.loadScript("C:\\Users\\jelle\\source\\repos\\LaytonMobileEngine\\TestScript");
         }
 
         protected override void UnloadContent()
         {
             // TODO: Unload content
+            // NOTE: HOW!!
         }
 
         protected override void Update(GameTime gameTime)
         {
+            //-- DEV EXIT --//
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: add update logic
+            //-- MOUSE INPUT --//
+            MouseState state = Mouse.GetState();
+
+            //cursor move
+            uiManager.mouse.mouseX = state.X;
+            uiManager.mouse.mouseY = state.Y;
+
+            //mouse click left
+            //TODO ADD MOUSE CLICK HANDLER
 
             base.Update(gameTime);
         }
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            //SCREEN WIPE
+            GraphicsDevice.Clear(Color.Purple);
 
+            //START DRAWING
             spriteBatch.Begin();
+
+            //DRAWING LOCATION
             locManager.currentLocation.draw(spriteBatch, spriteManager, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
-            System.Console.WriteLine((1 / gameTime.ElapsedGameTime.TotalSeconds).ToString());
+
+            //FINAL DRAWING UI OVERLAY
+            uiManager.draw(spriteBatch, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+
+            //STOP DRAWING
             spriteBatch.End();
+
+            //DEBUG
+            System.Console.WriteLine((1 / gameTime.ElapsedGameTime.TotalSeconds).ToString());
 
             base.Draw(gameTime);
         }
