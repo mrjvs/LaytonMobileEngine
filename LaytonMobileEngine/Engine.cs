@@ -12,6 +12,7 @@ namespace LaytonMobileEngine
         private CharacterSpriteManager spriteManager;
         private ScriptLoader scriptLoader;
         private UIManager uiManager;
+        private ScriptFileParser fileParser;
 
 
         public Engine()
@@ -42,8 +43,13 @@ namespace LaytonMobileEngine
 
             scriptLoader = new ScriptLoader(locManager, spriteManager, uiManager);
 
+            fileParser = new ScriptFileParser();
+
             //load script file
-            scriptLoader.loadScript("C:\\Users\\jelle\\source\\repos\\LaytonMobileEngine\\TestScript");
+            scriptLoader.loadScript("C:\\Users\\Jacob\\Source\\Repos\\LaytonMobileEngine\\TestScript");
+
+            //loading script Jacob's way
+            fileParser.loadFile("C:\\Users\\Jacob\\Source\\Repos\\LaytonMobileEngine\\ScriptFiles\\TestScriptFile.txt");
         }
 
         protected override void UnloadContent()
