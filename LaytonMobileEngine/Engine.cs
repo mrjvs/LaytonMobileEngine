@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace LaytonMobileEngine
 {
@@ -46,10 +47,10 @@ namespace LaytonMobileEngine
             fileParser = new ScriptFileParser();
 
             //load script file
-            scriptLoader.loadScript("C:\\Users\\Jacob\\Source\\Repos\\LaytonMobileEngine\\TestScript");
-
+            string homepath = Environment.GetEnvironmentVariable("homepath");
+            scriptLoader.loadScript(homepath + "\\Source\\Repos\\LaytonMobileEngine\\TestScript");
             //loading script Jacob's way
-            fileParser.loadFile("C:\\Users\\Jacob\\Source\\Repos\\LaytonMobileEngine\\ScriptFiles\\TestScriptFile.txt");
+            fileParser.loadFile(homepath + "\\Source\\Repos\\LaytonMobileEngine\\ScriptFiles\\TestScriptFile.txt");
         }
 
         protected override void UnloadContent()
