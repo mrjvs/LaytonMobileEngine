@@ -1,9 +1,12 @@
-[location] = DEBUG
+[location]
 background = "C:\Pictures\Background.png"
 sprites = 1, 4
-[sprite] = DEBUG
+[/location]
+[sprite]
 id = 1
 img = "C:\Pictures\Sprite1.png"
-[sprite] = DEBUG
+[/sprite]
+[sprite]
 id = 2
 img = "C:\Pictues\Sprite2.png"
+[/sprite]
