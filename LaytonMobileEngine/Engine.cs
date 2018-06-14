@@ -13,6 +13,7 @@ namespace LaytonMobileEngine
         private CharacterSpriteManager spriteManager;
         private ScriptLoader scriptLoader;
         private UIManager uiManager;
+        private TrunkManager trunkManager;
         private ScriptFileParser fileParser;
 
 

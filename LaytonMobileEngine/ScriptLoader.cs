@@ -33,7 +33,7 @@ namespace LaytonMobileEngine
             list.Add(new Character(0, null, new Rectangle(100, 100, 186, 421)));
             cs.addTexture(path + "\\textures\\luke.png");
             l.addLocation(path + "\\textures\\layton-bg.png", list);
-            ui.loadTextures(path + "\\textures\\ui\\trunk.png", 0, 0, 50, path + "\\textures\\ui\\cursor.png", 20);
+            ui.loadTextures(path + "\\textures\\ui\\trunk.png", 0, 0, 50, path + "\\textures\\ui\\cursor.png", 20, path + "\\textures\\ui\\trunk-background.png", path + "\\textures\\ui\\placeholder-button.png", path + "\\textures\\ui\\placeholder-button2.png");
         }
     }
 }
