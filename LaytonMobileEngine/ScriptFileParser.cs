@@ -19,12 +19,12 @@ namespace LaytonMobileEngine
             if (File.Exists(path))
             {
                 StreamReader File = new StreamReader(path);
-                while ((line = File.ReadLine()) != null) {
-                    string[] splitLine = line.Split('=');
-                    string command = splitLine[0];
-                    string value = splitLine[1];
-                    Console.WriteLine("Command: " + command);
-                    Console.WriteLine("Value: " + value); 
+                while ((line = File.ReadLine()) != null) { //iterate over every line in the file
+                    string[] SplitLine = line.Split('='); //splitting command and value
+                    string command = SplitLine[0];
+                    string CommandValue = SplitLine[1];
+                    Console.WriteLine("Command: " + CommandValue); //Debugging purposes
+                    Console.WriteLine("Value: " + value); //Debugging purposes
                 }
             }
             else
