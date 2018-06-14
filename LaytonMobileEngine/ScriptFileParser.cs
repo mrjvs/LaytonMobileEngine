@@ -20,7 +20,11 @@ namespace LaytonMobileEngine
             {
                 StreamReader File = new StreamReader(path);
                 while ((line = File.ReadLine()) != null) {
-                    Console.WriteLine(line);
+                    string[] splitLine = line.Split('=');
+                    string command = splitLine[0];
+                    string value = splitLine[1];
+                    Console.WriteLine("Command: " + command);
+                    Console.WriteLine("Value: " + value); 
                 }
             }
             else
