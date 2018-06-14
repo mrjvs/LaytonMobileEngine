@@ -24,9 +24,23 @@ namespace LaytonMobileEngine
     
         public void draw(SpriteBatch canvas, int screenWidth, int screenHeight)
         {
-            canvas.Draw(backgroundTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
-            canvas.Draw(button1Texture, new Rectangle(50, 50, 200, 200), Color.White);
-            canvas.Draw(button2Texture, new Rectangle(300, 50, 200, 200), Color.White);
+            if (isOpen)
+            {
+                canvas.Draw(backgroundTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+                canvas.Draw(button1Texture, new Rectangle(50, 50, 200, 200), Color.White);
+                canvas.Draw(button2Texture, new Rectangle(300, 50, 200, 200), Color.White);
+            }
         }
+
+        public void openTrunk()
+        {
+            isOpen = true;
+        }
+
+        public void closeTrunk()
+        {
+            isOpen = false;
+        }
+
     }
 }

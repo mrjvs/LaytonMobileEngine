@@ -13,9 +13,9 @@ namespace LaytonMobileEngine
         private CharacterSpriteManager spriteManager;
         private ScriptLoader scriptLoader;
         private UIManager uiManager;
-        private TrunkManager trunkManager;
         private ScriptFileParser fileParser;
 
+        private bool hasClicked = false;
 
         public Engine()
         {
@@ -74,10 +74,28 @@ namespace LaytonMobileEngine
             uiManager.mouse.mouseY = state.Y;
 
             //mouse click left
-            //TODO ADD MOUSE CLICK HANDLER
+            bool triggered = false;
+            if (state.LeftButton == ButtonState.Pressed)
+            {
+                if (!hasClicked)
+                {
+                    //fires once per click
+                    triggered = uiManager.click(state.X, state.Y);
+                    if (!triggered) { } //Other click stuff, only triggers if nothing else has been clicked.
+                    hasClicked = true;
+                }
+            } else
+            {
+                hasClicked = false;
+            }
+
+
+            //-- UI UPDATE --//
+            uiManager.update();
 
             base.Update(gameTime);
         }
+
         protected override void Draw(GameTime gameTime)
         {
             //SCREEN WIPE

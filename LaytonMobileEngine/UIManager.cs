@@ -19,9 +19,21 @@ namespace LaytonMobileEngine
         private GraphicsDevice gDevice;
         public TrunkManager trunkManager;
 
+        private Double alphaIncrement;
+        private Action afterFade;
+        private double alpha = 255;
+        private int fadeWait;
+        private bool isFading = false;
+        private bool fadeIn = false;
+        private Texture2D fadeTexture;
+
         public UIManager(GraphicsDevice g)
         {
             gDevice = g;
+            fadeTexture = new Texture2D(g, 10, 10);
+            Color[] data = new Color[100];
+            for (int i = 0; i < data.Length; ++i) data[i] = Color.Black;
+            fadeTexture.SetData(data);
         }
 
         public void loadTextures(String menuIconTexturePath, int menuIconX, int menuIconY, int menuIconSize, String mouseCursorTexturePath, int mouseCursorSize, String trunkBackgroundPath, String trunkButton1Path, String trunkButton2Path)
@@ -40,9 +52,82 @@ namespace LaytonMobileEngine
             canvas.Draw(menuIcon, menuLocation, Color.White);
             trunkManager.draw(canvas, screenWidth, screenHeight);
 
-
             canvas.Draw(mouseTexture, mouse.mousePos, Color.White);
+            if (isFading) canvas.Draw(fadeTexture, new Rectangle(0, 0, screenWidth, screenHeight), new Color(255, 255, 255, (int) alpha));
         }
+
+        public bool click(int mouseX, int mouseY)
+        {
+            if (isFading) return true;
+
+            if (trunkManager.isOpen)
+            {
+                //trunk click stuff
+                return true;
+            }
+
+            if (menuLocation.Contains(new Point(mouseX,mouseY)))
+            {
+                //open trunk
+                transitionScreen(true, 10, trunkManager.openTrunk);
+                return true;
+            }
+
+            return false;
+        }
+
+        public void update()
+        {
+            if (isFading)
+            {   
+                if (fadeIn)
+                {
+                    if (alpha < 255)
+                    {
+                        alpha += alphaIncrement;
+                    }
+                    else
+                    {
+                        alpha = 255;
+                        if (fadeWait > 0)
+                        {
+                            fadeWait--;
+                            if (fadeWait == 0) afterFade();
+                        }
+                        else
+                        {
+                            fadeIn = false;
+                        }
+                    }
+                } else
+                {
+                    alpha -= alphaIncrement;
+                    if (alpha <= 0)
+                    {
+                        alpha = 0;
+                        isFading = false;
+                    }
+                }
+            }
+        }
+
+        //SCREEN TRANSITION
+        public void transitionScreen(bool fast, int framesWait, Action callback)
+        {
+            if (fast)
+            {
+                alphaIncrement = 10;
+            } else
+            {
+                alphaIncrement = 2;
+            }
+            fadeWait = framesWait;
+            afterFade = callback;
+            isFading = true;
+            fadeIn = true;
+            alpha = 0;
+        }
+
     }
 
     class UIMouse
