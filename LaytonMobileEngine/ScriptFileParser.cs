@@ -9,7 +9,7 @@ namespace LaytonMobileEngine
 {
     class ScriptFileParser
     {
-        string line;
+        private string line;
 
         public ScriptFileParser() {
             Console.WriteLine("Script File Parser initialized"); //for debugging purposes
@@ -18,13 +18,14 @@ namespace LaytonMobileEngine
         public void loadFile(string path) {
             if (File.Exists(path))
             {
-                StreamReader File = new StreamReader(path);
-                while ((line = File.ReadLine()) != null) { //iterate over every line in the file
-                    string[] SplitLine = line.Split('='); //splitting command and value
-                    string command = SplitLine[0];
-                    string CommandValue = SplitLine[1];
-                    Console.WriteLine("Command: " + CommandValue); //Debugging purposes
-                    Console.WriteLine("Value: " + value); //Debugging purposes
+                StreamReader file = new StreamReader(path);
+                while ((line = file.ReadLine()) != null) //iterate over every line in the file
+                {
+                    string[] splitLine = line.Split('='); //splitting command and value
+                    string command = splitLine[0];
+                    string commandValue = splitLine[1];
+                    Console.WriteLine("Command: " + command); //Debugging purposes
+                    Console.WriteLine("Value: " + commandValue); //Debugging purposes
                 }
             }
             else

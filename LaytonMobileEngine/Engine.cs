@@ -42,9 +42,9 @@ namespace LaytonMobileEngine
 
             uiManager = new UIManager(GraphicsDevice);
 
-            scriptLoader = new ScriptLoader(locManager, spriteManager, uiManager);
-
             fileParser = new ScriptFileParser();
+
+            scriptLoader = new ScriptLoader(locManager, spriteManager, uiManager, fileParser);
 
             //load script file
             string homepath = Environment.GetEnvironmentVariable("homepath");
