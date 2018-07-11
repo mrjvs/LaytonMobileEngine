@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Configuration;
 
 namespace LaytonMobileEngine
 {
@@ -49,9 +50,8 @@ namespace LaytonMobileEngine
 
             //load script file
             string homepath = Environment.GetEnvironmentVariable("homepath");
-            scriptLoader.loadScript(homepath + "\\Source\\Repos\\LaytonMobileEngine\\TestScript");
-            //loading script Jacob's way
-            fileParser.loadFile(homepath + "\\Source\\Repos\\LaytonMobileEngine\\ScriptFiles\\TestScriptFile.txt");
+
+            scriptLoader.loadScript(ConfigurationManager.AppSettings["scriptFilePath"]);
         }
 
         protected override void UnloadContent()
@@ -81,7 +81,7 @@ namespace LaytonMobileEngine
                 {
                     //fires once per click
                     triggered = uiManager.click(state.X, state.Y);
-                    if (!triggered) { } //Other click stuff, only triggers if nothing else has been clicked.
+                    if (!triggered) locManager.currentLocation.click(state.X, state.Y); //Other click stuff, only triggers if nothing else has been clicked.
                     hasClicked = true;
                 }
             } else

@@ -63,6 +63,7 @@
     <Compile Include="Character.cs" />
     <Compile Include="CharacterSpriteManager.cs" />
     <Compile Include="Dialog.cs" />
+    <Compile Include="DialogManager.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="LocationManager.cs" />
     <Compile Include="Engine.cs" />

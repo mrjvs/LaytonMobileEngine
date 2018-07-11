@@ -33,5 +33,25 @@ namespace LaytonMobileEngine
                 canvas.Draw(sprites.spriteList[c.characterSpriteIndex], c.spriteArea, Color.White);
             }
         }
+
+        public bool click(int mouseX, int mouseY)
+        {
+            foreach (Character c in chars)
+            {
+                if (c.spriteArea.Contains(new Point(mouseX, mouseY)))
+                {
+                    
+
+
+                    return true;
+                }
+            }
+
+            //hint coin click detection
+
+            //location action click detection
+
+            return false;
+        }
     }
 }
