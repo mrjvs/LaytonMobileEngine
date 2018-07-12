@@ -10,13 +10,13 @@ namespace LaytonMobileEngine
     class Character
     {
         public int characterSpriteIndex;
-        private List<Dialog> dialogList;
+        public List<int> dialogList;
         public Rectangle spriteArea;
 
-        public Character(int spriteIndex, List<Dialog> dialog, Rectangle area)
+        public Character(int spriteIndex, List<int> dialogList, Rectangle area)
         {
             characterSpriteIndex = spriteIndex;
-            dialogList = dialog;
+            this.dialogList = dialogList;
             spriteArea = area;
         }
     }

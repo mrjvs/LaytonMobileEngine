@@ -14,13 +14,15 @@ namespace LaytonMobileEngine
         private CharacterSpriteManager cs;
         private UIManager ui;
         private ScriptFileParser fp;
+        private DialogManager dm;
 
-        public ScriptLoader(LocationManager loc, CharacterSpriteManager spriteManager, UIManager uiManager, ScriptFileParser fileParser)
+        public ScriptLoader(LocationManager loc, CharacterSpriteManager spriteManager, UIManager uiManager, DialogManager dialogManager, ScriptFileParser fileParser)
         {
             l = loc;
             cs = spriteManager;
             ui = uiManager;
             fp = fileParser;
+            dm = dialogManager;
         }
 
         public void loadScript(String path)
@@ -30,7 +32,15 @@ namespace LaytonMobileEngine
 
             //debug script loading
             List<Character> list = new List<Character>();
-            list.Add(new Character(0, null, new Rectangle(100, 100, 186, 421)));
+            list.Add(new Character(0, new List<int> {0}, new Rectangle(100, 100, 186, 421)));
+            List<GameAction> actionList = new List<GameAction>
+            {
+                new TextGameAction("This is a test dialog"),
+                new TextGameAction("I hope this is gonna work well"),
+                new PuzzleGameAction(0)
+            };
+
+            dm.addDialog(new Dialog(actionList));
             cs.addTexture(path + "\\textures\\luke.png");
             l.addLocation(path + "\\textures\\layton-bg.png", list);
             ui.loadTextures(path + "\\textures\\ui\\trunk.png", 0, 0, 50, path + "\\textures\\ui\\cursor.png", 20, path + "\\textures\\ui\\trunk-background.png", path + "\\textures\\ui\\placeholder-button.png", path + "\\textures\\ui\\placeholder-button2.png");

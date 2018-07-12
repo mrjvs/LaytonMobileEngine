@@ -15,6 +15,9 @@ namespace LaytonMobileEngine
         private ScriptLoader scriptLoader;
         private UIManager uiManager;
         private ScriptFileParser fileParser;
+        private DialogManager dialogManager;
+
+        private SpriteFont font;
 
         private bool hasClicked = false;
 
@@ -38,7 +41,12 @@ namespace LaytonMobileEngine
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            locManager = new LocationManager(GraphicsDevice);
+            //font, has to be moved and modified later;
+            font = Content.Load<SpriteFont>("Arial");
+
+            dialogManager = new DialogManager(GraphicsDevice);
+
+            locManager = new LocationManager(GraphicsDevice, dialogManager);
 
             spriteManager = new CharacterSpriteManager(GraphicsDevice);
 
@@ -46,7 +54,7 @@ namespace LaytonMobileEngine
 
             fileParser = new ScriptFileParser();
 
-            scriptLoader = new ScriptLoader(locManager, spriteManager, uiManager, fileParser);
+            scriptLoader = new ScriptLoader(locManager, spriteManager, uiManager, dialogManager, fileParser);
 
             //load script file
             string homepath = Environment.GetEnvironmentVariable("homepath");
@@ -80,8 +88,9 @@ namespace LaytonMobileEngine
                 if (!hasClicked)
                 {
                     //fires once per click
-                    triggered = uiManager.click(state.X, state.Y);
-                    if (!triggered) locManager.currentLocation.click(state.X, state.Y); //Other click stuff, only triggers if nothing else has been clicked.
+                    triggered = dialogManager.click(state.X, state.Y);
+                    if (!triggered) triggered = uiManager.click(state.X, state.Y);
+                    if (!triggered) triggered = locManager.currentLocation.click(state.X, state.Y); //Other click stuff, only triggers if nothing else has been clicked.
                     hasClicked = true;
                 }
             } else
@@ -107,8 +116,11 @@ namespace LaytonMobileEngine
             //DRAWING LOCATION
             locManager.currentLocation.draw(spriteBatch, spriteManager, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
-            //FINAL DRAWING UI OVERLAY
+            //DRAWING UI OVERLAY
             uiManager.draw(spriteBatch, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+
+            //DRAWING DIALOG
+            dialogManager.draw(spriteBatch, font);
 
             //STOP DRAWING
             spriteBatch.End();

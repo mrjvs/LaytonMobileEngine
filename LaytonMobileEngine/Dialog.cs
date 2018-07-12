@@ -17,15 +17,25 @@ namespace LaytonMobileEngine
 
     }
 
-    class GameAction
+    public interface GameAction { }
+
+    public class TextGameAction : GameAction
     {
-        public int type; //1 = dialogtext, 2 = unlock, 3 = puzzle
         public String text;
 
-        public GameAction(int actionType, String actionText)
+        public TextGameAction(String actionText)
         {
-            type = actionType;
             text = actionText;
+        }
+    }
+
+    public class PuzzleGameAction : GameAction
+    {
+        public int id;
+
+        public PuzzleGameAction(int puzzleId)
+        {
+            id = puzzleId;
         }
     }
 }

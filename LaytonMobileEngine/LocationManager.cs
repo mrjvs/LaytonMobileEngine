@@ -15,16 +15,18 @@ namespace LaytonMobileEngine
         private List<Location> locations = new List<Location>();
         private GraphicsDevice gDevice;
         private int locationIndex = 0;
+        private DialogManager dialogManager;
 
-        public LocationManager(GraphicsDevice g)
+        public LocationManager(GraphicsDevice g, DialogManager dm)
         {
             gDevice = g;
+            dialogManager = dm;
         }
 
         public void addLocation(String path, List<Character> chars)
         {
             Texture2D text = Texture2D.FromStream(gDevice, new FileStream(path, FileMode.Open));
-            Location loc = new Location(text, chars);
+            Location loc = new Location(text, chars, dialogManager);
             locations.Add(loc);
         }
 

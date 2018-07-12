@@ -12,11 +12,13 @@ namespace LaytonMobileEngine
     {
         private List<Character> chars;
         private Texture2D bgText;
+        private DialogManager dialogManager;
 
-        public Location(Texture2D texture, List<Character> charList)
+        public Location(Texture2D texture, List<Character> charList, DialogManager dialogManager)
         {
             bgText = texture;
             chars = charList;
+            this.dialogManager = dialogManager;
         }
 
         public List<Character> getCharacters()
@@ -40,9 +42,7 @@ namespace LaytonMobileEngine
             {
                 if (c.spriteArea.Contains(new Point(mouseX, mouseY)))
                 {
-                    
-
-
+                    dialogManager.runDialog(c.dialogList[0]);
                     return true;
                 }
             }
