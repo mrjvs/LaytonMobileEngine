@@ -15,9 +15,9 @@ namespace LaytonMobileEngine
         private List<Location> locations = new List<Location>();
         private GraphicsDevice gDevice;
         private int locationIndex = 0;
-        private DialogManager dialogManager;
+        private DialogueManager dialogManager;
 
-        public LocationManager(GraphicsDevice g, DialogManager dm)
+        public LocationManager(GraphicsDevice g, DialogueManager dm)
         {
             gDevice = g;
             dialogManager = dm;

@@ -14,9 +14,9 @@ namespace LaytonMobileEngine
         private CharacterSpriteManager cs;
         private UIManager ui;
         private ScriptFileParser fp;
-        private DialogManager dm;
+        private DialogueManager dm;
 
-        public ScriptLoader(LocationManager loc, CharacterSpriteManager spriteManager, UIManager uiManager, DialogManager dialogManager, ScriptFileParser fileParser)
+        public ScriptLoader(LocationManager loc, CharacterSpriteManager spriteManager, UIManager uiManager, DialogueManager dialogManager, ScriptFileParser fileParser)
         {
             l = loc;
             cs = spriteManager;
@@ -40,7 +40,7 @@ namespace LaytonMobileEngine
                 new PuzzleGameAction(0)
             };
 
-            dm.addDialog(new Dialog(actionList));
+            dm.addDialog(new Dialogue(actionList));
             cs.addTexture(path + "\\textures\\luke.png");
             l.addLocation(path + "\\textures\\layton-bg.png", list);
             ui.loadTextures(path + "\\textures\\ui\\trunk.png", 0, 0, 50, path + "\\textures\\ui\\cursor.png", 20, path + "\\textures\\ui\\trunk-background.png", path + "\\textures\\ui\\placeholder-button.png", path + "\\textures\\ui\\placeholder-button2.png");

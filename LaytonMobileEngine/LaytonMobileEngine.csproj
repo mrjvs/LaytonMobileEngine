@@ -62,8 +62,8 @@
   <ItemGroup>
     <Compile Include="Character.cs" />
     <Compile Include="CharacterSpriteManager.cs" />
-    <Compile Include="Dialog.cs" />
-    <Compile Include="DialogManager.cs" />
+    <Compile Include="Dialogue.cs" />
+    <Compile Include="DialogueManager.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="LocationManager.cs" />
     <Compile Include="Engine.cs" />
@@ -133,9 +133,7 @@
       <Link>MonoGame.Framework.dll.config</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="App.config" />
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>

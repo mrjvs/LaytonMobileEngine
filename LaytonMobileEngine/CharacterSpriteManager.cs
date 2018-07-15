@@ -20,7 +20,7 @@ namespace LaytonMobileEngine
 
         public void addTexture(String path)
         {
-            Texture2D text = Texture2D.FromStream(gDevice, new FileStream(path, FileMode.Open));
+          Texture2D text = Texture2D.FromStream(gDevice, new FileStream(path, FileMode.Open));
             spriteList.Add(text);
         }
 

@@ -12,9 +12,9 @@ namespace LaytonMobileEngine
     {
         private List<Character> chars;
         private Texture2D bgText;
-        private DialogManager dialogManager;
+        private DialogueManager dialogManager;
 
-        public Location(Texture2D texture, List<Character> charList, DialogManager dialogManager)
+        public Location(Texture2D texture, List<Character> charList, DialogueManager dialogManager)
         {
             bgText = texture;
             chars = charList;

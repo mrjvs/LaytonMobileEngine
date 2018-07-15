@@ -15,7 +15,7 @@ namespace LaytonMobileEngine
         private ScriptLoader scriptLoader;
         private UIManager uiManager;
         private ScriptFileParser fileParser;
-        private DialogManager dialogManager;
+        private DialogueManager dialogManager;
 
         private SpriteFont font;
 
@@ -44,7 +44,7 @@ namespace LaytonMobileEngine
             //font, has to be moved and modified later;
             font = Content.Load<SpriteFont>("Arial");
 
-            dialogManager = new DialogManager(GraphicsDevice);
+            dialogManager = new DialogueManager(GraphicsDevice);
 
             locManager = new LocationManager(GraphicsDevice, dialogManager);
 

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace LaytonMobileEngine
 {
-    class Dialog
+    class Dialogue
     {
         public List<GameAction> actionList;
 
-        public Dialog(List<GameAction> actionList)
+        public Dialogue(List<GameAction> actionList)
         {
             this.actionList = actionList;
         }

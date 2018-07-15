@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace LaytonMobileEngine
 {
-    class DialogManager
+    class DialogueManager
     {
 
-        private List<Dialog> dialogList = new List<Dialog>();
+        private List<Dialogue> dialogList = new List<Dialogue>();
 
         private GraphicsDevice g;
         private Texture2D t;
@@ -22,7 +22,7 @@ namespace LaytonMobileEngine
         public bool isInAnimation = false;
         public int currentAction = 0;
 
-        public DialogManager(GraphicsDevice g)
+        public DialogueManager(GraphicsDevice g)
         {
             this.g = g;
 
@@ -32,9 +32,9 @@ namespace LaytonMobileEngine
             });
         }
 
-        public void addDialog(Dialog dialog)
+        public void addDialog(Dialogue dialogue)
         {
-            dialogList.Add(dialog);
+            dialogList.Add(dialogue);
         }
 
         public void runDialog(int id)
