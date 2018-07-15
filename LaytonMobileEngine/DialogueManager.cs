@@ -1,17 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Configuration;
 
 namespace LaytonMobileEngine
 {
     class DialogueManager
     {
 
-        private List<Dialogue> dialogList = new List<Dialogue>();
+        private List<Dialogue> dialogueList = new List<Dialogue>();
 
         private GraphicsDevice g;
         private Texture2D t;
@@ -26,30 +24,31 @@ namespace LaytonMobileEngine
         {
             this.g = g;
 
-            t = new Texture2D(g, 1, 1);
-            t.SetData<Color>(
-               new Color[] { Color.White
-            });
+            t = Texture2D.FromStream(g, new FileStream(ConfigurationManager.AppSettings["scriptFilePath"] + "\\test.png", FileMode.Open));
         }
 
-        public void addDialog(Dialogue dialogue)
+        public void AddDialog(Dialogue dialogue)
         {
-            dialogList.Add(dialogue);
+            dialogueList.Add(dialogue);
         }
 
-        public void runDialog(int id)
+        public void RunDialog(int id)
         {
             currentDialog = id;
             isRunning = true;
         }
 
-        public void draw(SpriteBatch canvas, SpriteFont font)
+        public void Draw(SpriteBatch canvas, SpriteFont font)
         {
             if (!isRunning) return;
+
             canvas.Draw(t, new Rectangle(200, 520, 800, 180), null, Color.Beige);
-            if (dialogList[currentDialog].actionList[currentAction] is TextGameAction)
+            
+
+            if (dialogueList[currentDialog].actionList[currentAction] is TextGameAction)
             {
-                canvas.DrawString(font, ((TextGameAction)dialogList[currentDialog].actionList[currentAction]).text, new Vector2(210, 530), Color.Black);
+                canvas.DrawString(font, ((TextGameAction)dialogueList[currentDialog].actionList[currentAction]).text, new Vector2(240, 570), Color.Black);
+                canvas.DrawString(font, ((TextGameAction)dialogueList[currentDialog].actionList[currentAction]).nameText, new Vector2(240, 535), Color.Black);
             } else
             {
                 canvas.DrawString(font, "PUZZLEGAMEACTION", new Vector2(210, 530), Color.Black);
@@ -62,22 +61,23 @@ namespace LaytonMobileEngine
             if (isRunning)
             {
                 currentAction++;
-                if (currentAction >= dialogList[currentDialog].actionList.Count)
+                if (currentAction >= dialogueList[currentDialog].actionList.Count)
                 {
-                    resetValues();
+                    ResetValues();
                     return true;
                 }
             }
             return false;
         }
 
-        public void resetValues()
+        public void ResetValues()
         {
             currentDialog = 0;
             isRunning = false;
             charProgress = 0;
             isInAnimation = false;
             currentAction = 0;
+
         }
     }
 }

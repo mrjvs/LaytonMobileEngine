@@ -32,15 +32,15 @@ namespace LaytonMobileEngine
 
             //debug script loading
             List<Character> list = new List<Character>();
-            list.Add(new Character(0, new List<int> {0}, new Rectangle(100, 100, 186, 421)));
+            list.Add(new Character(0, new List<int> {0}, new Rectangle(100, 100, 186, 421), "Bert"));
             List<GameAction> actionList = new List<GameAction>
             {
-                new TextGameAction("This is a test dialog"),
-                new TextGameAction("I hope this is gonna work well"),
+                new TextGameAction("This is a test dialog", list[0].characterName),
+                new TextGameAction("I hope this is gonna work well", list[0].characterName),
                 new PuzzleGameAction(0)
             };
 
-            dm.addDialog(new Dialogue(actionList));
+            dm.AddDialog(new Dialogue(actionList));
             cs.addTexture(path + "\\textures\\luke.png");
             l.addLocation(path + "\\textures\\layton-bg.png", list);
             ui.loadTextures(path + "\\textures\\ui\\trunk.png", 0, 0, 50, path + "\\textures\\ui\\cursor.png", 20, path + "\\textures\\ui\\trunk-background.png", path + "\\textures\\ui\\placeholder-button.png", path + "\\textures\\ui\\placeholder-button2.png");

@@ -22,10 +22,12 @@ namespace LaytonMobileEngine
     public class TextGameAction : GameAction
     {
         public String text;
+        public string nameText;
 
-        public TextGameAction(String actionText)
+        public TextGameAction(String actionText, string nText)
         {
             text = actionText;
+            nameText = nText;
         }
     }
 

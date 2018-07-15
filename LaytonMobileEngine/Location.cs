@@ -28,7 +28,7 @@ namespace LaytonMobileEngine
 
         public void draw(SpriteBatch canvas, CharacterSpriteManager sprites, int screenWidth, int screenHeight)
         {
-            canvas.Draw(bgText, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+
 
             foreach(Character c in chars)
             {
@@ -42,7 +42,7 @@ namespace LaytonMobileEngine
             {
                 if (c.spriteArea.Contains(new Point(mouseX, mouseY)))
                 {
-                    dialogManager.runDialog(c.dialogList[0]);
+                    dialogManager.RunDialog(c.dialogList[0]);
                     return true;
                 }
             }

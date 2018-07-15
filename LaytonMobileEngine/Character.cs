@@ -13,11 +13,14 @@ namespace LaytonMobileEngine
         public List<int> dialogList;
         public Rectangle spriteArea;
 
-        public Character(int spriteIndex, List<int> dialogList, Rectangle area)
+        public string characterName;
+
+        public Character(int spriteIndex, List<int> dialogList, Rectangle area, string cName)
         {
             characterSpriteIndex = spriteIndex;
             this.dialogList = dialogList;
             spriteArea = area;
+            characterName = cName;
         }
     }
 }

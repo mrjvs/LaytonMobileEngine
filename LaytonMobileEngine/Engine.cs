@@ -120,7 +120,7 @@ namespace LaytonMobileEngine
             uiManager.draw(spriteBatch, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
             //DRAWING DIALOG
-            dialogManager.draw(spriteBatch, font);
+            dialogManager.Draw(spriteBatch, font);
 
             //STOP DRAWING
             spriteBatch.End();
